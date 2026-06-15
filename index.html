@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZombieSafeHouse — 3 Stili</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&family=Bebas+Neue&family=Syne:wght@600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0a0a0a; font-family: 'Inter', sans-serif; color: white; padding: 30px 16px 80px; overflow-x: hidden; }
+.page-title { text-align: center; margin-bottom: 10px; font-family: 'Instrument Serif', serif; font-size: 28px; color: #fff; }
+.page-subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; }
+.switcher { display: flex; gap: 8px; max-width: 460px; margin: 0 auto 24px; background: #1a1a1a; padding: 6px; border-radius: 12px; }
+.sw-btn { flex: 1; padding: 12px 8px; background: transparent; border: none; color: #888; font-size: 11px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+.sw-btn.active { background: #fff; color: #000; }
+.style-name { text-align: center; margin-bottom: 12px; color: #aaa; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.style-desc { text-align: center; max-width: 420px; margin: 0 auto 20px; color: #666; font-size: 12px; line-height: 1.6; }
+.frame { max-width: 420px; margin: 0 auto; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); display: none; }
+.frame.active { display: block; }
+/* STILE 1 - EDITORIAL */
+.st1 { background: #f5f1ea; color: #1a1814; padding: 36px 28px; min-height: 720px; }
+.st1-top { display: flex; justify-content: space-between; margin-bottom: 40px; font-size: 11px; letter-spacing: 0.2em; color: #807a6f; text-transform: uppercase; }
+.st1-title { font-family: 'Instrument Serif', serif; font-size: 56px; line-height: 0.95; margin-bottom: 6px; }
+.st1-title em { font-style: italic; color: #b8392a; }
+.st1-sub { font-size: 13px; color: #6a6356; margin-bottom: 32px; font-family: 'DM Mono', monospace; }
+.st1-divider { width: 40px; height: 1px; background: #1a1814; margin-bottom: 28px; }
+.st1-index-card { background: #1a1814; color: #f5f1ea; padding: 32px 28px; border-radius: 4px; margin-bottom: 24px; }
+.st1-index-label { font-size: 10px; letter-spacing: 0.3em; color: #b8392a; margin-bottom: 12px; text-transform: uppercase; }
+.st1-index-num { font-family: 'Instrument Serif', serif; font-size: 84px; line-height: 1; margin-bottom: 4px; }
+.st1-index-num em { font-style: italic; }
+.st1-index-num .tot { color: #807a6f; font-size: 28px; font-style: italic; }
+.st1-index-desc { font-style: italic; font-family: 'Instrument Serif', serif; font-size: 17px; line-height: 1.3; margin-top: 16px; color: #b8a98c; }
+.st1-cat-title { font-size: 10px; letter-spacing: 0.3em; color: #6a6356; text-transform: uppercase; margin-bottom: 16px; display: flex; justify-content: space-between; }
+.st1-cat { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(26,24,20,0.15); }
+.st1-cat-name { font-family: 'Instrument Serif', serif; font-size: 19px; }
+.st1-cat-val { font-family: 'DM Mono', monospace; font-size: 13px; }
+/* STILE 2 - BRUTALIST */
+.st2 { background: #0d0d0d; color: #fff; padding: 24px 22px; min-height: 720px; }
+.st2-bar { background: #ff3300; color: #000; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; margin-bottom: 24px; text-transform: uppercase; display: flex; justify-content: space-between; }
+.st2-massive { font-family: 'Bebas Neue', sans-serif; font-size: 88px; line-height: 0.85; margin-bottom: 4px; }
+.st2-massive em { color: #ff3300; font-style: normal; }
+.st2-massive-sub { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #888; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid #fff; }
+.st2-box { border: 2px solid #fff; padding: 20px; margin-bottom: 16px; }
+.st2-box.alert { background: #ff3300; color: #000; border-color: #ff3300; }
+.st2-box-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; opacity: 0.7; }
+.st2-box-num { font-family: 'Bebas Neue', sans-serif; font-size: 80px; line-height: 0.9; }
+.st2-box-num .of { font-size: 28px; opacity: 0.5; }
+.st2-box-desc { font-family: 'IBM Plex Mono', monospace; font-size: 12px; margin-top: 8px; }
+.st2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.st2-mini { border: 2px solid #fff; padding: 14px; }
+.st2-mini-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+.st2-mini-val { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; }
+.st2-mini-val.danger { color: #ff3300; }
+.st2-mini-val.warn { color: #ffcc00; }
+.st2-mini-val.safe { color: #00ff88; }
+.st2-list-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 2px solid rgba(255,255,255,0.2); font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.st2-list-item:last-child { border: none; }
+.st2-list-item .lbl { letter-spacing: 0.1em; text-transform: uppercase; }
+.st2-list-item .num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; }
+/* STILE 3 - SOFT GLASS */
+.st3 { background: radial-gradient(circle at 20% 10%, #4a3a8a 0%, transparent 50%), radial-gradient(circle at 80% 80%, #c84a6a 0%, transparent 50%), linear-gradient(180deg, #1a1530 0%, #0d0a1f 100%); color: white; padding: 36px 24px; min-height: 720px; font-family: 'Space Grotesk', sans-serif; }
+.st3-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+.st3-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; }
+.st3-logo span { color: #ff8a9b; }
+.st3-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #ff8a9b, #c84a6a); }
+.st3-greet { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; line-height: 1.05; margin-bottom: 6px; }
+.st3-greet em { background: linear-gradient(90deg, #ff8a9b, #f5b67a); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: normal; }
+.st3-greet-sub { color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 28px; }
+.st3-glass { background: rgba(255,255,255,0.07); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 24px; margin-bottom: 16px; }
+.st3-glass-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+.st3-glass-label .badge { background: rgba(255,138,155,0.2); color: #ff8a9b; padding: 4px 10px; border-radius: 100px; font-size: 10px; }
+.st3-ring { position: relative; width: 180px; height: 180px; margin: 0 auto 16px; }
+.st3-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.st3-ring-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.st3-ring-val { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; background: linear-gradient(135deg, #ff8a9b, #f5b67a); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+.st3-ring-of { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+.st3-status { text-align: center; color: #ff8a9b; font-size: 12px; font-weight: 600; margin-top: 6px; }
+.st3-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.st3-cat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 16px; border-radius: 16px; }
+.st3-cat-emoji { font-size: 22px; margin-bottom: 6px; display: block; }
+.st3-cat-name { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.st3-cat-val { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; line-height: 1; }
+.st3-cat-val.high { color: #ff8a9b; }
+.st3-cat-val.mid { color: #f5b67a; }
+.st3-cat-val.low { color: #7ce0c0; }
+.st3-bar-mini { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.st3-bar-mini-fill { height: 100%; background: currentColor; border-radius: 2px; }
+.st3-btn { width: 100%; background: linear-gradient(135deg, #ff8a9b, #c84a6a); color: white; border: none; padding: 16px; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; box-shadow: 0 8px 24px rgba(200,74,106,0.4); }
+.st1-cat:nth-child(2) .bar-w, .st1-cat:nth-child(3) .bar-w, .st1-cat:nth-child(4) .bar-w, .st1-cat:nth-child(5) .bar-w, .st1-cat:nth-child(6) .bar-w { display:none; }
+</style>
+</head>
+<body>
+<h1 class="page-title">3 alternative di stile</h1>
+<p class="page-subtitle">Tocca i tasti qui sotto per confrontare</p>
+<div class="switcher">
+  <button class="sw-btn active" data-target="f1">Editorial</button>
+  <button class="sw-btn" data-target="f2">Brutalist</button>
+  <button class="sw-btn" data-target="f3">Soft Glass</button>
+</div>
+<div class="style-name" id="name1">— Stile A · Editorial —</div>
+<p class="style-desc" id="desc1">Carta avorio, tipografia serif italica. Una rivista di geopolitica più che un'app. Sobrio, raffinato.</p>
+<div class="frame active" id="f1">
+  <div class="st1">
+    <div class="st1-top"><span>Issue №09 · MMXXVI</span><span>17:54</span></div>
+    <h1 class="st1-title">L'<em>assaltabilità</em><br>della tua casa.</h1>
+    <p class="st1-sub">— rapporto operativo · 12/05/2026</p>
+    <div class="st1-divider"></div>
+    <div class="st1-index-card">
+      <div class="st1-index-label">Indice complessivo</div>
+      <div class="st1-index-num"><em>7</em>,2 <span class="tot">/ 10</span></div>
+      <div class="st1-index-desc">"Struttura difendibile che richiede correzioni immediate sul perimetro."</div>
+    </div>
+    <div class="st1-cat-title"><span>Categorie</span><span>5 voci</span></div>
+    <div class="st1-cat"><span class="st1-cat-name">Perimetro</span><span class="st1-cat-val">8.0</span></div>
+    <div class="st1-cat"><span class="st1-cat-name">Visibilità</span><span class="st1-cat-val">7.0</span></div>
+    <div class="st1-cat"><span class="st1-cat-name">Risorse</span><span class="st1-cat-val">4.0</span></div>
+    <div class="st1-cat"><span class="st1-cat-name">Comunicazioni</span><span class="st1-cat-val">6.0</span></div>
+    <div class="st1-cat"><span class="st1-cat-name">Mobilità</span><span class="st1-cat-val">9.0</span></div>
+  </div>
+</div>
+<div class="style-name" id="name2" style="display:none">— Stile B · Brutalist —</div>
+<p class="style-desc" id="desc2" style="display:none">Tipografia enorme, rosso warning. Manifesto di protezione civile anni '80. Punk-militare.</p>
+<div class="frame" id="f2">
+  <div class="st2">
+    <div class="st2-bar"><span>// ALERT.SYS</span><span>17:54 CET</span></div>
+    <h1 class="st2-massive">YOUR HOUSE<br>IS <em>NOT</em><br>SAFE.</h1>
+    <p class="st2-massive-sub">— REPORT №007/2026 ZSH</p>
+    <div class="st2-box alert">
+      <div class="st2-box-label">INDICE ASSALTO</div>
+      <div class="st2-box-num">7.2<span class="of">/10</span></div>
+      <div class="st2-box-desc">ALTO RISCHIO. AGIRE ENTRO 24H.</div>
+    </div>
+    <div class="st2-grid">
+      <div class="st2-mini"><div class="st2-mini-label">PERIM.</div><div class="st2-mini-val danger">8.0</div></div>
+      <div class="st2-mini"><div class="st2-mini-label">VIS.</div><div class="st2-mini-val danger">7.0</div></div>
+      <div class="st2-mini"><div class="st2-mini-label">RES.</div><div class="st2-mini-val safe">4.0</div></div>
+      <div class="st2-mini"><div class="st2-mini-label">MOB.</div><div class="st2-mini-val danger">9.0</div></div>
+    </div>
+    <div class="st2-box">
+      <div class="st2-box-label">TOP THREATS</div>
+      <div class="st2-list-item"><span class="lbl">01 · WINDOWS</span><span class="num" style="color:#ff3300">9.1</span></div>
+      <div class="st2-list-item"><span class="lbl">02 · WATER</span><span class="num" style="color:#ff3300">8.7</span></div>
+      <div class="st2-list-item"><span class="lbl">03 · VISIBILITY</span><span class="num" style="color:#ffcc00">7.9</span></div>
+    </div>
+  </div>
+</div>
+<div class="style-name" id="name3" style="display:none">— Stile C · Soft Glass —</div>
+<p class="style-desc" id="desc3" style="display:none">Gradient viola/rosa, vetri smerigliati, anelli. Vibe iOS 2026 / Apple Vision. Premium, morbido.</p>
+<div class="frame" id="f3">
+  <div class="st3">
+    <div class="st3-top">
+      <div class="st3-logo">zombie<span>safe</span>.</div>
+      <div class="st3-avatar"></div>
+    </div>
+    <h1 class="st3-greet">Ciao,<br><em>Operatore</em> 👋</h1>
+    <p class="st3-greet-sub">Ecco com'è messa la tua safehouse.</p>
+    <div class="st3-glass">
+      <div class="st3-glass-label"><span>Indice assaltabilità</span><span class="badge">⚠ Alto</span></div>
+      <div class="st3-ring">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.08)" stroke-width="6" fill="none"/>
+          <circle cx="50" cy="50" r="42" stroke="url(#g1)" stroke-width="6" fill="none" stroke-dasharray="263.9" stroke-dashoffset="73.9" stroke-linecap="round"/>
+          <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff8a9b"/><stop offset="100%" stop-color="#f5b67a"/></linearGradient></defs>
+        </svg>
+        <div class="st3-ring-num"><div class="st3-ring-val">7.2</div><div class="st3-ring-of">SU 10</div></div>
+      </div>
+      <div class="st3-status">↑ +0.4 rispetto a ieri</div>
+    </div>
+    <div class="st3-cats">
+      <div class="st3-cat" style="color:#ff8a9b"><span class="st3-cat-emoji">🛡</span><div class="st3-cat-name">Perimetro</div><div class="st3-cat-val high">8.0</div><div class="st3-bar-mini"><div class="st3-bar-mini-fill" style="width:80%"></div></div></div>
+      <div class="st3-cat" style="color:#f5b67a"><span class="st3-cat-emoji">👁</span><div class="st3-cat-name">Visibilità</div><div class="st3-cat-val mid">7.0</div><div class="st3-bar-mini"><div class="st3-bar-mini-fill" style="width:70%"></div></div></div>
+      <div class="st3-cat" style="color:#7ce0c0"><span class="st3-cat-emoji">📦</span><div class="st3-cat-name">Risorse</div><div class="st3-cat-val low">4.0</div><div class="st3-bar-mini"><div class="st3-bar-mini-fill" style="width:40%"></div></div></div>
+      <div class="st3-cat" style="color:#ff8a9b"><span class="st3-cat-emoji">🏃</span><div class="st3-cat-name">Mobilità</div><div class="st3-cat-val high">9.0</div><div class="st3-bar-mini"><div class="st3-bar-mini-fill" style="width:90%"></div></div></div>
+    </div>
+    <button class="st3-btn">Vedi consigli ✨</button>
+  </div>
+</div>
+<script>
+document.querySelectorAll('.sw-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.target;
+    document.querySelectorAll('.sw-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.frame').forEach(f => f.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(target).classList.add('active');
+    ['1','2','3'].forEach(n => {
+      document.getElementById('name'+n).style.display = 'none';
+      document.getElementById('desc'+n).style.display = 'none';
+    });
+    const n = target.replace('f','');
+    document.getElementById('name'+n).style.display = '';
+    document.getElementById('desc'+n).style.display = '';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+});
+</script>
+</body>
+</html>
